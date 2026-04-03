@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)file:///Users/Johana/Downloads/negociacion_proveedores.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estrategia de Negociación con Proveedores | VidaNatura</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
+  :root {
+    --bg: #f7f6f2; --surface: #ffffff; --border: #e8e6df;
+    --text-primary: #1a1916; --text-secondary: #6b6960; --text-muted: #9e9b92;
+    --green: #1D9E75; --green-light: #EAF3DE; --green-dark: #27500A;
+    --blue: #0056D2; --blue-light: #E6F1FB; --blue-dark: #0C447C;
+    --amber-light: #FAEEDA; --amber-dark: #633806;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-primary); padding: 40px 24px; }
+  .wrap { max-width: 860px; margin: 0 auto; }
+  header { border-bottom: 2px solid var(--green); padding-bottom: 24px; margin-bottom: 32px; }
+  .header-tag { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--green); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  header h1 { font-size: 26px; font-weight: 600; margin-bottom: 6px; }
+  header p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+  .proveedor { border: 1px solid var(--border); border-radius: 14px; margin-bottom: 24px; overflow: hidden; background: var(--surface); }
+  .prov-header { padding: 16px 20px; display: flex; align-items: center; gap: 14px; }
+  .prov-logo { width: 46px; height: 46px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+  .prov-meta { flex: 1; }
+  .prov-meta h3 { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+  .prov-meta p { font-size: 12px; }
+  .prov-pill { font-size: 10px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+
+  .prov-body { border-top: 1px solid var(--border); }
+  .section { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-secondary); margin-bottom: 10px; }
+  .section p { font-size: 12px; color: var(--text-secondary); line-height: 1.7; }
+
+  .arg-list { display: flex; flex-direction: column; gap: 8px; }
+  .arg-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border-radius: 8px; background: var(--bg); border: 1px solid var(--border); }
+  .arg-num { font-size: 10px; font-weight: 700; width: 18px; flex-shrink: 0; margin-top: 2px; }
+  .arg-text { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+  .arg-text strong { color: var(--text-primary); font-weight: 500; }
+
+  .cond-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .cond-card { border-radius: 8px; padding: 12px 14px; }
+  .cond-card h4 { font-size: 11px; font-weight: 600; margin-bottom: 5px; }
+  .cond-card p { font-size: 11px; line-height: 1.6; }
+
+  .kpi-list { display: flex; flex-direction: column; gap: 6px; }
+  .kpi-item { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 8px; background: var(--bg); }
+  .kpi-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .kpi-text { font-size: 12px; color: var(--text-primary); flex: 1; }
+  .kpi-val { font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 6px; white-space: nowrap; }
+
+  .tabla-wrap { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 24px; background: var(--surface); }
+  .tabla-header { padding: 14px 20px; background: var(--bg); border-bottom: 1px solid var(--border); }
+  .tabla-header p { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+  .tabla-header h3 { font-size: 14px; font-weight: 600; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { text-align: left; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary); padding: 8px 16px; border-bottom: 1px solid var(--border); }
+  td { padding: 9px 16px; border-bottom: 1px solid var(--border); color: var(--text-primary); vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  .badge { font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: 5px; }
+
+  .timeline-wrap { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 24px; background: var(--surface); }
+  .timeline-header { padding: 14px 20px; background: var(--bg); border-bottom: 1px solid var(--border); }
+  .timeline-header h3 { font-size: 14px; font-weight: 600; }
+  .timeline-header p { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+  .timeline { display: flex; }
+  .t-step { flex: 1; padding: 14px 16px; border-right: 1px solid var(--border); }
+  .t-step:last-child { border-right: none; }
+  .t-mes { font-size: 10px; font-weight: 600; color: var(--green); margin-bottom: 6px; font-family: 'DM Mono', monospace; }
+  .t-accion { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+  footer { text-align: center; font-size: 11px; color: var(--text-muted); font-family: 'DM Mono', monospace; border-top: 1px solid var(--border); padding-top: 20px; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="header-tag">VidaNatura Centroamérica · Sección 03 · Estrategia de Negociación</div>
+  <h1>Negociación con Proveedores de Formación</h1>
+  <p>Plan de negociación de licencias, condiciones contractuales y KPIs de renovación para Udemy Business y Coursera for Business.</p>
+</header>
+
+<!-- UDEMY BUSINESS -->
+<div class="proveedor">
+  <div class="prov-header" style="background:#EAF3DE;">
+    <div class="prov-logo" style="background:#3D8B00;color:#fff;">UB</div>
+    <div class="prov-meta">
+      <h3 style="color:#27500A;">Udemy Business</h3>
+      <p style="color:#3B6D11;">Plataforma principal · 6 colaboradores asignados · +210,000 cursos disponibles</p>
+    </div>
+    <span class="prov-pill" style="background:#27500A;color:#fff;">Proveedor primario</span>
+  </div>
+  <div class="prov-body">
+    <div class="section">
+      <div class="section-label">Argumentos de negociación — palancas de poder</div>
+      <div class="arg-list">
+        <div class="arg-item"><span class="arg-num" style="color:#3D8B00;">01</span><span class="arg-text"><strong>Volumen con proyección de crecimiento:</strong> iniciamos con 10 licencias pero VidaNatura opera en 4 países con 14 tiendas — el contrato puede escalar a 50+ usuarios en 18 meses. Presentar esto como pipeline, no como compra puntual.</span></div>
+        <div class="arg-item"><span class="arg-num" style="color:#3D8B00;">02</span><span class="arg-text"><strong>Compromiso de caso de éxito:</strong> ofrecer a Udemy la posibilidad de documentar el caso VidaNatura como historia de éxito regional en Centroamérica — mercado en expansión para ellos.</span></div>
+        <div class="arg-item"><span class="arg-num" style="color:#3D8B00;">03</span><span class="arg-text"><strong>Pago anticipado a cambio de descuento:</strong> proponer pago anual completo por adelantado a cambio de descuento del 20–25%. Precio de lista ~$360/usuario/año → con descuento: ~$270/usuario.</span></div>
+        <div class="arg-item"><span class="arg-num" style="color:#3D8B00;">04</span><span class="arg-text"><strong>Período de prueba extendido:</strong> negociar 30 días de acceso completo antes de firma del contrato para validar disponibilidad y calidad de los cursos asignados a cada perfil.</span></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-label">Condiciones mínimas a exigir en el contrato</div>
+      <div class="cond-grid">
+        <div class="cond-card" style="background:#EAF3DE;"><h4 style="color:#27500A;">Acceso y contenido</h4><p style="color:#3B6D11;">Catálogo completo sin restricciones · Subtítulos en español en cursos clave · Actualizaciones de contenido incluidas sin costo adicional</p></div>
+        <div class="cond-card" style="background:#EAF3DE;"><h4 style="color:#27500A;">Reportes y trazabilidad</h4><p style="color:#3B6D11;">Dashboard de progreso por usuario · Exportación de reportes CSV · Certificados descargables y verificables</p></div>
+        <div class="cond-card" style="background:#EAF3DE;"><h4 style="color:#27500A;">Soporte</h4><p style="color:#3B6D11;">Gerente de cuenta asignado · Respuesta a incidentes en menos de 24h · Onboarding asistido para administradores</p></div>
+        <div class="cond-card" style="background:#EAF3DE;"><h4 style="color:#27500A;">Flexibilidad contractual</h4><p style="color:#3B6D11;">Reasignación de licencias entre usuarios · Cláusula de salida a los 6 meses si KPIs no se cumplen · Sin penalización por reducción de hasta 20% de licencias</p></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-label">KPIs de renovación de contrato</div>
+      <div class="kpi-list">
+        <div class="kpi-item"><div class="kpi-dot" style="background:#3D8B00;"></div><span class="kpi-text">Disponibilidad de la plataforma (uptime garantizado)</span><span class="kpi-val" style="background:#EAF3DE;color:#27500A;">≥ 99.5% mensual</span></div>
+        <div class="kpi-item"><div class="kpi-dot" style="background:#3D8B00;"></div><span class="kpi-text">Cursos del plan disponibles en catálogo</span><span class="kpi-val" style="background:#EAF3DE;color:#27500A;">100% de los 30 cursos</span></div>
+        <div class="kpi-item"><div class="kpi-dot" style="background:#3D8B00;"></div><span class="kpi-text">Tasa de completitud promedio de colaboradores</span><span class="kpi-val" style="background:#EAF3DE;color:#27500A;">≥ 75% al mes 6</span></div>
+        <div class="kpi-item"><div class="kpi-dot" style="background:#3D8B00;"></div><span class="kpi-text">NPS interno de satisfacción con la plataforma</span><span class="kpi-val" style="background:#EAF3DE;color:#27500A;">≥ 35 puntos</span></div>
+        <div class="kpi-item"><div class="kpi-dot" style="background:#3D8B00;"></div><span class="kpi-text">Entrega de reportes de progreso mensuales</span><span class="kpi-val" style="background:#EAF3DE;color:#27500A;">primeros 5 días del mes</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COURSERA -->
+<div class="proveedor">
+  <div class="prov-header" style="background:#E6F1FB;">
+    <div class="prov-logo" style="background:#0056D2;color:#fff;">CF</div>
+    <div class="prov-meta">
+      <h3 style="color:#0C447C;">Coursera for Business</h3>
+      <p style="color:#185FA5;">Plataforma secundaria · 8 colaboradores asignados · Universidades e instituciones top a nivel global</p>
+    </div>
+    <span class="prov-pill" style="background:#0C447C;color:#fff;">Proveedor secundario</span>
+  </div>
+  <div class="prov-body">
+    <div class="section">
+      <div class="section-label">Argumentos de negociación — palancas de poder</div>
+      <div class="arg-list">
+        <div class="arg-item"><span class="arg-num" style="color:#0056D2;">01</span><span class="arg-text"><strong>Competencia entre proveedores:</strong> comunicar abiertamente que Udemy Business ya está en mesa de negociación. Coursera debe competir en precio y en calidad de certificaciones — su diferencial son los certificados respaldados por Google, IBM, PwC y universidades.</span></div>
+        <div class="arg-item"><span class="arg-num" style="color:#0056D2;">02</span><span class="arg-text"><strong>Enfoque en certificaciones de alto valor:</strong> posicionar a VidaNatura como empresa que busca credenciales verificables y reconocidas. Los certificados de Google, IBM y Meta tienen valor de mercado real para los colaboradores.</span></div>
+        <div class="arg-item"><span class="arg-num" style="color:#0056D2;">03</span><span class="arg-text"><strong>Negociar acceso a Coursera for Teams:</strong> el plan Teams permite hasta 25 usuarios con precio más accesible que el Enterprise. Para 10 usuarios iniciales, este tier es el más eficiente (~$400/usuario/año con descuento).</span></div>
+        <div class="arg-item"><span class="arg-num" style="color:#0056D2;">04</span><span class="arg-text"><strong>Exigir rutas personalizadas:</strong> negociar que el administrador pueda crear Learning Paths combinando cursos de distintas instituciones sin costo adicional.</span></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-label">Condiciones mínimas a exigir en el contrato</div>
+      <div class="cond-grid">
+        <div class="cond-card" style="background:#E6F1FB;"><h4 style="color:#0C447C;">Certificaciones</h4><p style="color:#185FA5;">Certificados verificables con URL única · Acceso a certificados de Google, IBM y PwC incluidos · Sin costo adicional por examen</p></div>
+        <div class="cond-card" style="background:#E6F1FB;"><h4 style="color:#0C447C;">Administración</h4><p style="color:#185FA5;">Panel de seguimiento individual · Asignación de cursos por perfil de cargo · Notificaciones automáticas de progreso</p></div>
+        <div class="cond-card" style="background:#E6F1FB;"><h4 style="color:#0C447C;">Idioma y accesibilidad</h4><p style="color:#185FA5;">Subtítulos en español · Acceso móvil sin restricciones · Modo sin conexión para zonas con conectividad limitada</p></div>
+        <div class="cond-card" style="background:#E6F1FB;"><h4 style="color:#0C447C;">Precio y renovación</h4><p style="color:#185FA5;">Precio bloqueado 12 meses · Descuento 15% por pago anticipado · Hasta 5 usuarios adicionales sin renegociar contrato</p></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-label">KPIs de renovación de contrato</div>
+      <div class="kpi-list">
+        <div class="kpi-item"><div class="kpi-dot" style="background:#0056D2;"></div><span class="kpi-text">Certificaciones emitidas y verificadas al cierre del plan</span><span class="kpi-val" style="background:#E6F1FB;color:#0C447C;">≥ 20 certificados en 6 meses</span></div>
+        <div class="kpi-item"><div class="kpi-dot" style="background:#0056D2;"></div><span class="kpi-text">Disponibilidad de plataforma (uptime)</span><span class="kpi-val" style="background:#E6F1FB;color:#0C447C;">≥ 99.5% mensual</span></div>
+        <div class="kpi-item"><div class="kpi-dot" style="background:#0056D2;"></div><span class="kpi-text">Cursos asignados disponibles sin interrupción</span><span class="kpi-val" style="background:#E6F1FB;color:#0C447C;">100% durante 6 meses</span></div>
+        <div class="kpi-item"><div class="kpi-dot" style="background:#0056D2;"></div><span class="kpi-text">Calificación promedio de cursos por colaboradores</span><span class="kpi-val" style="background:#E6F1FB;color:#0C447C;">≥ 4.2 / 5.0</span></div>
+        <div class="kpi-item"><div class="kpi-dot" style="background:#0056D2;"></div><span class="kpi-text">Tiempo de respuesta del soporte técnico</span><span class="kpi-val" style="background:#E6F1FB;color:#0C447C;">≤ 4 horas hábiles</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TABLA COMPARATIVA -->
+<div class="tabla-wrap">
+  <div class="tabla-header">
+    <h3>Comparativa de proveedores</h3>
+    <p>Udemy Business vs. Coursera for Business — criterios de decisión para VidaNatura</p>
+  </div>
+  <div style="padding: 0 4px 4px;">
+    <table>
+      <tbody><tr><th>Criterio</th><th>Udemy Business</th><th>Coursera for Business</th></tr>
+      <tr><td>Volumen de catálogo</td><td><span class="badge" style="background:#EAF3DE;color:#27500A;">+210,000 cursos</span></td><td><span class="badge" style="background:#E6F1FB;color:#0C447C;">+7,000 cursos curados</span></td></tr>
+      <tr><td>Calidad de certificación</td><td>Certificado de instructor</td><td><span class="badge" style="background:#E6F1FB;color:#0C447C;">Google, IBM, PwC, Universidades</span></td></tr>
+      <tr><td>Precio estimado (con descuento)</td><td><span class="badge" style="background:#EAF3DE;color:#27500A;">~$270/usuario/año</span></td><td>~$400/usuario/año</td></tr>
+      <tr><td>Seguimiento de progreso</td><td>Dashboard básico</td><td><span class="badge" style="background:#E6F1FB;color:#0C447C;">Dashboard avanzado + rutas</span></td></tr>
+      <tr><td>Modo sin conexión</td><td>App móvil limitada</td><td><span class="badge" style="background:#E6F1FB;color:#0C447C;">Descarga completa de contenido</span></td></tr>
+      <tr><td>Perfil ideal para VidaNatura</td><td>Perfiles operativos y técnicos</td><td><span class="badge" style="background:#E6F1FB;color:#0C447C;">Perfiles de liderazgo y estratégicos</span></td></tr>
+    </tbody></table>
+  </div>
+</div>
+
+<!-- CRONOGRAMA -->
+<div class="timeline-wrap">
+  <div class="timeline-header">
+    <h3>Cronograma de negociación</h3>
+    <p>4 semanas previas al arranque del plan de formación</p>
+  </div>
+  <div class="timeline">
+    <div class="t-step"><div class="t-mes">Semana 1</div><div class="t-accion">Solicitar propuestas formales a ambos proveedores con requerimientos definidos</div></div>
+    <div class="t-step"><div class="t-mes">Semana 2</div><div class="t-accion">Período de prueba gratuito con 2 usuarios piloto por plataforma</div></div>
+    <div class="t-step"><div class="t-mes">Semana 3</div><div class="t-accion">Negociación de precio, condiciones y KPIs contractuales con ambos proveedores</div></div>
+    <div class="t-step"><div class="t-mes">Semana 4</div><div class="t-accion">Firma de contratos y onboarding de administradores. Activación de licencias.</div></div>
+  </div>
+</div>
+
+<footer>VidaNatura Centroamérica S.A. · Consultoría de Transformación Digital 2026 · Sección 03 — Estrategia de Negociación con Proveedores</footer>
+</div>
+
+
+</body></html>
