@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)file:///Users/Johana/Downloads/digcomp_perfiles_1_5%20(3).html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DigComp 2.2 — Perfiles 1 a 5 | VidaNatura</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --border: #e8e6df;
+    --text-primary: #1a1916;
+    --text-secondary: #6b6960;
+    --text-muted: #9e9b92;
+    --green: #1D9E75;
+    --green-light: #E1F5EE;
+    --green-dark: #085041;
+    --purple: #7F77DD;
+    --purple-light: #EEEDFE;
+    --purple-dark: #3C3489;
+    --coral: #D85A30;
+    --coral-light: #FAECE7;
+    --coral-dark: #993C1D;
+    --amber: #BA7517;
+    --amber-light: #FAEEDA;
+    --amber-dark: #633806;
+    --blue: #185FA5;
+    --blue-light: #E6F1FB;
+    --blue-dark: #0C447C;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    padding: 40px 24px;
+    min-height: 100vh;
+  }
+
+  header {
+    max-width: 860px;
+    margin: 0 auto 36px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+  }
+
+  .header-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--green);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+
+  header p {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .legend {
+    display: flex;
+    gap: 20px;
+    margin-top: 16px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+  }
+
+  .cards {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .badge {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .card-meta h2 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 3px;
+  }
+
+  .card-meta p {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .card-body {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .scores {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .score-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .score-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    width: 150px;
+    flex-shrink: 0;
+  }
+
+  .dots {
+    display: flex;
+    gap: 3px;
+  }
+
+  .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+  }
+
+  .dot-actual { background: var(--green); }
+  .dot-empty { background: var(--border); }
+
+  .score-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .tag {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  .tag-alta { background: var(--coral-light); color: var(--coral-dark); }
+  .tag-media { background: var(--amber-light); color: var(--amber-dark); }
+  .tag-baja { background: var(--green-light); color: var(--green-dark); }
+
+  .card-note {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    padding-top: 4px;
+    border-top: 1px solid var(--border);
+  }
+
+  canvas { flex-shrink: 0; }
+
+  footer {
+    max-width: 860px;
+    margin: 32px auto 0;
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-tag">VidaNatura Centroamérica · Sección 02 · DigComp 2.2</div>
+  <h1>Diagnósticos Individuales — Perfiles 1 a 5</h1>
+  <p>Evaluación de competencias digitales bajo el marco DigComp 2.2 (Comisión Europea). Escala 1–5: Básico (1–2) · Intermedio (3) · Avanzado (4) · Altamente especializado (5).</p>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Nivel actual</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--purple);opacity:0.7"></div> Nivel requerido</div>
+  </div>
+</header>
+
+<div class="cards">
+
+  <!-- Perfil 1 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="badge" style="background:var(--green-light);color:var(--green-dark)">AM</div>
+      <div class="card-meta">
+        <h2>1. Andrea Molina — Gerente Regional de Ventas</h2>
+        <p>Guatemala · 42 años · Licenciatura en Administración de Empresas</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="scores">
+        <div class="score-row">
+          <span class="score-label">Alfabetización informacional</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">3/5 · req 5</span><span class="tag tag-alta">Brecha alta</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Comunicación y colaboración</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">4/5 · req 5</span><span class="tag tag-media">Brecha media</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Creación de contenido digital</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">2/5 · req 3</span><span class="tag tag-media">Brecha media</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Seguridad</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">3/5 · req 4</span><span class="tag tag-media">Brecha media</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Resolución de problemas</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">3/5 · req 5</span><span class="tag tag-alta">Brecha alta</span>
+        </div>
+      </div>
+      <canvas id="r1" width="140" height="140"></canvas>
+    </div>
+    <p class="card-note">Maneja herramientas básicas con soltura pero no explota el ERP ni el CRM para la toma de decisiones estratégicas. Su mayor brecha está en análisis de datos.</p>
+  </div>
+
+  <!-- Perfil 2 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="badge" style="background:var(--purple-light);color:var(--purple-dark)">CF</div>
+      <div class="card-meta">
+        <h2>2. Carlos Fuentes — Encargado de Tienda</h2>
+        <p>El Salvador · 35 años · Bachillerato técnico en Ventas</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="scores">
+        <div class="score-row">
+          <span class="score-label">Alfabetización informacional</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">2/5 · req 4</span><span class="tag tag-alta">Brecha alta</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Comunicación y colaboración</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">3/5 · req 4</span><span class="tag tag-media">Brecha media</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Creación de contenido digital</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">2/5 · req 3</span><span class="tag tag-media">Brecha media</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Seguridad</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">2/5 · req 3</span><span class="tag tag-media">Brecha media</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Resolución de problemas</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">2/5 · req 4</span><span class="tag tag-alta">Brecha alta</span>
+        </div>
+      </div>
+      <canvas id="r2" width="140" height="140"></canvas>
+    </div>
+    <p class="card-note">Opera tienda con criterio comercial sólido pero su manejo digital es básico. Representa el perfil más común en la red de tiendas.</p>
+  </div>
+
+  <!-- Perfil 3 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="badge" style="background:var(--amber-light);color:var(--amber-dark)">MJ</div>
+      <div class="card-meta">
+        <h2>3. María José Rivas — Analista de Marketing Digital</h2>
+        <p>Guatemala · 28 años · Licenciatura en Marketing</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="scores">
+        <div class="score-row">
+          <span class="score-label">Alfabetización informacional</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">4/5 · req 5</span><span class="tag tag-media">Brecha media</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Comunicación y colaboración</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div></div>
+          <span class="score-meta">5/5 · req 5</span><span class="tag tag-baja">Sin brecha</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Creación de contenido digital</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div></div>
+          <span class="score-meta">5/5 · req 5</span><span class="tag tag-baja">Sin brecha</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Seguridad</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">3/5 · req 4</span><span class="tag tag-media">Brecha media</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Resolución de problemas</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">4/5 · req 5</span><span class="tag tag-media">Brecha media</span>
+        </div>
+      </div>
+      <canvas id="r3" width="140" height="140"></canvas>
+    </div>
+    <p class="card-note">Perfil más avanzado digitalmente. Su brecha principal es no poder explotar el CRM de forma autónoma para segmentación y campañas.</p>
+  </div>
+
+  <!-- Perfil 4 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="badge" style="background:var(--coral-light);color:var(--coral-dark)">RP</div>
+      <div class="card-meta">
+        <h2>4. Roberto Paz — Jefe de Logística y Distribución</h2>
+        <p>Honduras · 47 años · Licenciatura en Ingeniería Industrial</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="scores">
+        <div class="score-row">
+          <span class="score-label">Alfabetización informacional</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">3/5 · req 5</span><span class="tag tag-alta">Brecha alta</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Comunicación y colaboración</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">3/5 · req 4</span><span class="tag tag-media">Brecha media</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Creación de contenido digital</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">2/5 · req 3</span><span class="tag tag-media">Brecha media</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Seguridad</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">3/5 · req 4</span><span class="tag tag-media">Brecha media</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Resolución de problemas</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">3/5 · req 5</span><span class="tag tag-alta">Brecha alta</span>
+        </div>
+      </div>
+      <canvas id="r4" width="140" height="140"></canvas>
+    </div>
+    <p class="card-note">Amplia experiencia operativa pero resistencia marcada a herramientas digitales. Prefiere gestionar rutas y stock con registros físicos y llamadas telefónicas.</p>
+  </div>
+
+  <!-- Perfil 5 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="badge" style="background:var(--blue-light);color:var(--blue-dark)">LH</div>
+      <div class="card-meta">
+        <h2>5. Lucía Hernández — Ejecutiva de Atención al Cliente</h2>
+        <p>Costa Rica · 31 años · Técnico en Administración</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="scores">
+        <div class="score-row">
+          <span class="score-label">Alfabetización informacional</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">3/5 · req 4</span><span class="tag tag-media">Brecha media</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Comunicación y colaboración</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">4/5 · req 5</span><span class="tag tag-media">Brecha media</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Creación de contenido digital</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">3/5 · req 3</span><span class="tag tag-baja">Sin brecha</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Seguridad</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">3/5 · req 4</span><span class="tag tag-media">Brecha media</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Resolución de problemas</span>
+          <div class="dots"><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-actual"></div><div class="dot dot-empty"></div><div class="dot dot-empty"></div></div>
+          <span class="score-meta">3/5 · req 4</span><span class="tag tag-media">Brecha media</span>
+        </div>
+      </div>
+      <canvas id="r5" width="140" height="140"></canvas>
+    </div>
+    <p class="card-note">Perfil equilibrado con buenas habilidades de comunicación digital. Necesita reforzar el uso de herramientas CRM para gestión de tickets y seguimiento de clientes.</p>
+  </div>
+
+</div>
+
+<footer>VidaNatura Centroamérica S.A. · Consultoría de Transformación Digital 2026 · Sección 02 — Diagnósticos Individuales</footer>
+
+<script>
+function drawRadar(id, actual, required) {
+  const canvas = document.getElementById(id);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const cx = 70, cy = 70, r = 52;
+  const labels = ['Inform.', 'Comun.', 'Contenido', 'Seguridad', 'Resoluc.'];
+  const n = 5;
+  const angles = labels.map((_, i) => (Math.PI * 2 * i / n) - Math.PI / 2);
+
+  ctx.clearRect(0, 0, 140, 140);
+
+  for (let level = 1; level <= 5; level++) {
+    ctx.beginPath();
+    angles.forEach((a, i) => {
+      const x = cx + (r * level / 5) * Math.cos(a);
+      const y = cy + (r * level / 5) * Math.sin(a);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.closePath();
+    ctx.strokeStyle = 'rgba(128,128,128,0.18)';
+    ctx.lineWidth = 0.5;
+    ctx.stroke();
+  }
+
+  angles.forEach(a => {
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + r * Math.cos(a), cy + r * Math.sin(a));
+    ctx.strokeStyle = 'rgba(128,128,128,0.18)';
+    ctx.lineWidth = 0.5;
+    ctx.stroke();
+  });
+
+  ctx.beginPath();
+  angles.forEach((a, i) => {
+    const x = cx + (r * required[i] / 5) * Math.cos(a);
+    const y = cy + (r * required[i] / 5) * Math.sin(a);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(127,119,221,0.15)';
+  ctx.fill();
+  ctx.strokeStyle = '#7F77DD';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  ctx.beginPath();
+  angles.forEach((a, i) => {
+    const x = cx + (r * actual[i] / 5) * Math.cos(a);
+    const y = cy + (r * actual[i] / 5) * Math.sin(a);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(29,158,117,0.25)';
+  ctx.fill();
+  ctx.strokeStyle = '#1D9E75';
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  ctx.fillStyle = 'rgba(100,100,100,0.7)';
+  ctx.font = '9px DM Sans, sans-serif';
+  ctx.textAlign = 'center';
+  angles.forEach((a, i) => {
+    const lx = cx + (r + 12) * Math.cos(a);
+    const ly = cy + (r + 12) * Math.sin(a);
+    ctx.fillText(labels[i], lx, ly + 3);
+  });
+}
+
+drawRadar('r1', [3,4,2,3,3], [5,5,3,4,5]);
+drawRadar('r2', [2,3,2,2,2], [4,4,3,3,4]);
+drawRadar('r3', [4,5,5,3,4], [5,5,5,4,5]);
+drawRadar('r4', [3,3,2,3,3], [5,4,3,4,5]);
+drawRadar('r5', [3,4,3,3,3], [4,5,3,4,4]);
+</script>
+
+
+</body></html>
