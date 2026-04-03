@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)file:///Users/Johana/Downloads/bitacora_ia%20(1).html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bitácora de IA | VidaNatura</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
+  :root {
+    --bg: #f7f6f2; --surface: #ffffff; --border: #e8e6df;
+    --text-primary: #1a1916; --text-secondary: #6b6960; --text-muted: #9e9b92;
+    --green: #1D9E75; --green-light: #E1F5EE; --green-dark: #085041;
+    --purple: #7F77DD; --purple-light: #EEEDFE; --purple-dark: #3C3489;
+    --amber-light: #FAEEDA; --amber-dark: #633806;
+    --blue-light: #E6F1FB; --blue-dark: #0C447C;
+    --coral-light: #FAECE7; --coral-dark: #993C1D;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-primary); padding: 40px 24px; }
+  .wrap { max-width: 860px; margin: 0 auto; }
+
+  header { border-bottom: 2px solid var(--purple); padding-bottom: 24px; margin-bottom: 32px; }
+  .header-tag { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--purple); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  header h1 { font-size: 26px; font-weight: 600; margin-bottom: 6px; }
+  header p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  .meta-row { display: flex; gap: 12px; margin-top: 14px; flex-wrap: wrap; }
+  .meta-pill { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500; }
+
+  .intro { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 22px; margin-bottom: 28px; }
+  .intro p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+
+  .fase { margin-bottom: 28px; }
+  .fase-title { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .fase-num { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+  .fase-title h2 { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+
+  .prompts { display: flex; flex-direction: column; gap: 10px; }
+
+  .prompt-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .prompt-header { display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; background: var(--bg); border-bottom: 1px solid var(--border); }
+  .prompt-tag { font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 5px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; font-family: 'DM Mono', monospace; text-transform: uppercase; }
+  .prompt-meta { flex: 1; }
+  .prompt-meta h4 { font-size: 12px; font-weight: 600; color: var(--text-primary); margin-bottom: 2px; }
+  .prompt-meta p { font-size: 11px; color: var(--text-secondary); }
+  .prompt-body { padding: 12px 16px; }
+  .prompt-text { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-secondary); background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; line-height: 1.6; margin-bottom: 8px; }
+  .prompt-result { font-size: 11px; color: var(--text-secondary); line-height: 1.5; }
+  .prompt-result strong { color: var(--text-primary); font-weight: 500; }
+
+  .reflexion { background: var(--purple-light); border: 1px solid var(--purple); border-radius: 12px; padding: 18px 22px; margin-bottom: 28px; }
+  .reflexion h3 { font-size: 14px; font-weight: 600; color: var(--purple-dark); margin-bottom: 10px; }
+  .reflexion p { font-size: 12px; color: var(--purple-dark); line-height: 1.7; margin-bottom: 8px; }
+  .reflexion p:last-child { margin-bottom: 0; }
+
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 28px; }
+  .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px; text-align: center; }
+  .stat-num { font-size: 24px; font-weight: 600; margin-bottom: 4px; }
+  .stat-label { font-size: 11px; color: var(--text-secondary); line-height: 1.4; }
+
+  footer { text-align: center; font-size: 11px; color: var(--text-muted); font-family: 'DM Mono', monospace; border-top: 1px solid var(--border); padding-top: 20px; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="header-tag">VidaNatura Centroamérica · Sección 05 · Bitácora de IA</div>
+  <h1>Historial de Prompts — Proyecto de Consultoría</h1>
+  <p>Documentación del proceso de co-creación con Inteligencia Artificial (Claude — Anthropic) para el desarrollo de la simulación de consultoría en Transformación Digital de VidaNatura Centroamérica S.A.</p>
+  <div class="meta-row">
+    <span class="meta-pill" style="background:var(--purple-light);color:var(--purple-dark)">Herramienta: Claude Sonnet 4.6</span>
+    <span class="meta-pill" style="background:var(--green-light);color:var(--green-dark)">Empresa: Anthropic</span>
+    <span class="meta-pill" style="background:var(--blue-light);color:var(--blue-dark)">Período: Marzo–Abril 2026</span>
+    <span class="meta-pill" style="background:var(--amber-light);color:var(--amber-dark)">Metodología: Prompting iterativo</span>
+  </div>
+</header>
+
+<div class="intro">
+  <p>Esta bitácora documenta los prompts utilizados durante el desarrollo del proyecto de consultoría simulada para VidaNatura Centroamérica S.A. El objetivo es demostrar cómo la IA actuó como asistente estratégico — no como reemplazante del criterio profesional. Cada prompt refleja una decisión de diseño tomada por la consultora; la IA proporcionó la estructura, los datos sintéticos y las visualizaciones para materializarla.</p>
+</div>
+
+<!-- ESTADÍSTICAS -->
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-num" style="color:var(--purple);">20</div>
+    <div class="stat-label">Prompts principales utilizados</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num" style="color:var(--green);">6</div>
+    <div class="stat-label">Secciones del proyecto desarrolladas</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num" style="color:var(--blue-dark);">8</div>
+    <div class="stat-label">Archivos HTML generados</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num" style="color:var(--amber-dark);">10</div>
+    <div class="stat-label">Perfiles DigComp 2.2 creados</div>
+  </div>
+</div>
+
+<!-- FASE 1 -->
+<div class="fase">
+  <div class="fase-title">
+    <div class="fase-num" style="background:var(--green-light);color:var(--green-dark);">01</div>
+    <h2>Fase 1 — Definición del contexto empresarial</h2>
+  </div>
+  <div class="prompts">
+
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span class="prompt-tag" style="background:var(--green-light);color:var(--green-dark);">Diseño</span>
+        <div class="prompt-meta">
+          <h4>Creación de empresa ficticia — sector y geografía</h4>
+          <p>Sección 01 · Contexto Empresarial</p>
+        </div>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-text">"Quiero crear una empresa ficticia de retail de productos naturales y bienestar que opere en Centroamérica (Guatemala, El Salvador, Honduras y Costa Rica). Necesito un nombre, un contexto de crisis digital realista y cuatro objetivos estratégicos para los próximos 12 meses. La empresa debe tener una brecha digital clara relacionada con la adopción de un ERP y CRM."</div>
+        <div class="prompt-result"><strong>Resultado obtenido:</strong> Perfil completo de VidaNatura Centroamérica S.A. con contexto de crisis basado en adopción fallida de Odoo y Shopify Plus, 68% del personal operando con Excel, y cuatro objetivos estratégicos medibles. Criterio de la consultora: selección del sector bienestar como área de alto crecimiento en Centroamérica con brecha digital representativa.</div>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span class="prompt-tag" style="background:var(--green-light);color:var(--green-dark);">Visualización</span>
+        <div class="prompt-meta">
+          <h4>Mapa visual de crisis y brecha digital</h4>
+          <p>Sección 01 · Diagrama de flujo de síntomas y causas</p>
+        </div>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-text">"Crea un mapa visual interactivo que muestre los síntomas detectados, las causas raíz de la brecha digital y la solución propuesta (plan de upskilling 2026) para VidaNatura. Usa colores diferenciados por nivel de criticidad y asegúrate de que el texto sea legible en modo oscuro."</div>
+        <div class="prompt-result"><strong>Resultado obtenido:</strong> Diagrama SVG con tres capas (síntomas en coral, causas en ámbar, solución en verde y púrpura). Se realizaron dos iteraciones para corregir contraste en modo oscuro y actualizar el año de 2025 a 2026.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FASE 2 -->
+<div class="fase">
+  <div class="fase-title">
+    <div class="fase-num" style="background:var(--blue-light);color:var(--blue-dark);">02</div>
+    <h2>Fase 2 — Diagnóstico de colaboradores (DigComp 2.2)</h2>
+  </div>
+  <div class="prompts">
+
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span class="prompt-tag" style="background:var(--blue-light);color:var(--blue-dark);">Datos sintéticos</span>
+        <div class="prompt-meta">
+          <h4>Generación de 10 perfiles representativos</h4>
+          <p>Sección 02 · Fichas de perfil digital</p>
+        </div>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-text">"Necesito 10 colaboradores representativos de VidaNatura que cubran distintos niveles jerárquicos, áreas funcionales, edades y países de operación. Deben incluir: gerentes, operativos, especialistas y personal de tienda. Distribúyelos entre Guatemala, El Salvador, Honduras y Costa Rica."</div>
+        <div class="prompt-result"><strong>Resultado obtenido:</strong> Tabla con 10 perfiles balanceados que incluyen desde vendedor de piso (23 años, El Salvador) hasta Gerente de TI (44 años, Guatemala), cubriendo todas las áreas críticas de la empresa. Criterio de la consultora: garantizar representación de los perfiles con mayor y menor brecha digital.</div>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span class="prompt-tag" style="background:var(--blue-light);color:var(--blue-dark);">Evaluación</span>
+        <div class="prompt-meta">
+          <h4>Puntajes DigComp 2.2 por colaborador</h4>
+          <p>Sección 02 · Evaluación en 5 áreas del marco europeo</p>
+        </div>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-text">"Para cada uno de los 10 colaboradores, asigna puntajes del 1 al 5 en las 5 áreas del marco DigComp 2.2 (Alfabetización informacional, Comunicación y colaboración, Creación de contenido digital, Seguridad, Resolución de problemas). También define el nivel requerido para cada cargo. Los puntajes deben ser coherentes con el cargo, edad y nivel educativo de cada persona."</div>
+        <div class="prompt-result"><strong>Resultado obtenido:</strong> Matriz de 10×5 puntajes con niveles actuales y requeridos, etiquetas de brecha (alta, media, sin brecha) y análisis narrativo por perfil. Coherencia verificada: Jorge Méndez (TI) obtuvo 5/5 en todas las áreas; Patricia Solís (contadora, 50 años) mostró las brechas más críticas en seguridad.</div>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span class="prompt-tag" style="background:var(--blue-light);color:var(--blue-dark);">Visualización</span>
+        <div class="prompt-meta">
+          <h4>Gráficas de radar (spider charts) por colaborador</h4>
+          <p>Sección 02 · Comparación nivel actual vs. requerido</p>
+        </div>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-text">"Genera gráficas de radar interactivas para cada colaborador que muestren en verde el nivel actual y en morado el nivel requerido para su cargo, usando el marco DigComp 2.2 con las 5 áreas como ejes. Las gráficas deben renderizarse en canvas HTML5 y ser legibles tanto en modo claro como oscuro."</div>
+        <div class="prompt-result"><strong>Resultado obtenido:</strong> 10 gráficas de radar generadas con canvas JavaScript, integradas en tarjetas individuales con información del perfil, barras de puntuación y etiquetas de brecha. Se entregaron en dos archivos HTML (perfiles 1–5 y 6–10).</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FASE 3 -->
+<div class="fase">
+  <div class="fase-title">
+    <div class="fase-num" style="background:var(--amber-light);color:var(--amber-dark);">03</div>
+    <h2>Fase 3 — Plan Maestro de Formación</h2>
+  </div>
+  <div class="prompts">
+
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span class="prompt-tag" style="background:var(--amber-light);color:var(--amber-dark);">Diseño curricular</span>
+        <div class="prompt-meta">
+          <h4>Rutas de aprendizaje individuales — 5 cursos por colaborador</h4>
+          <p>Sección 03 · Udemy Business + Coursera · 6 meses</p>
+        </div>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-text">"Para cada uno de los 10 colaboradores, diseña una ruta de aprendizaje de exactamente 5 cursos distribuidos en 6 meses, usando únicamente Udemy Business y Coursera. Los cursos deben: (1) estar alineados a las brechas DigComp identificadas, (2) ser específicos y reales (con nombres de cursos existentes en las plataformas), (3) incluir el área DigComp que trabajan, la duración estimada y el mes de ejecución."</div>
+        <div class="prompt-result"><strong>Resultado obtenido:</strong> 50 cursos asignados (5 por colaborador), todos mapeados a áreas DigComp 2.2 específicas. Criterio de la consultora: Diego Castillo y Jorge Méndez recibieron cursos de liderazgo y cambio organizacional en lugar de fundamentos, coherente con su nivel avanzado.</div>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span class="prompt-tag" style="background:var(--amber-light);color:var(--amber-dark);">Estrategia</span>
+        <div class="prompt-meta">
+          <h4>Negociación con proveedores de formación</h4>
+          <p>Sección 03 · Udemy Business vs. Coursera for Business</p>
+        </div>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-text">"Desarrolla una estrategia de negociación con Udemy Business y Coursera for Business para VidaNatura. Incluye: palancas de negociación por proveedor, condiciones mínimas contractuales a exigir, KPIs que la empresa usará para decidir si renueva el contrato al año siguiente, y un cronograma de negociación de 4 semanas. Agrega una tabla comparativa entre ambos proveedores."</div>
+        <div class="prompt-result"><strong>Resultado obtenido:</strong> Estrategia diferenciada por proveedor con 4 palancas de negociación cada una, grilla de condiciones contractuales, 5 KPIs de renovación por plataforma y tabla comparativa de 6 criterios. Se usó la competencia entre proveedores como palanca central.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FASE 4 -->
+<div class="fase">
+  <div class="fase-title">
+    <div class="fase-num" style="background:var(--coral-light);color:var(--coral-dark);">04</div>
+    <h2>Fase 4 — Políticas, cultura y manejo de objeciones</h2>
+  </div>
+  <div class="prompts">
+
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span class="prompt-tag" style="background:var(--coral-light);color:var(--coral-dark);">Archivo independiente</span>
+        <div class="prompt-meta">
+          <h4>Manejo de objeciones como archivo HTML separado</h4>
+          <p>Sección 03 · El Reto · manejo_objeciones.html</p>
+        </div>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-text">"El manejo de objeciones no quedó guardado como archivo HTML independiente. Necesito generarlo como archivo separado para incluirlo en la carpeta 03_Plan_Maestro_Formacion de Google Drive, con las tres objeciones (costo, tiempo y resistencia) con ROI y KPIs."</div>
+        <div class="prompt-result"><strong>Resultado obtenido:</strong> Archivo manejo_objeciones.html generado con las tres objeciones completas — costo (ROI 340%), tiempo (ratio 1:3.6) y resistencia (marco ADKAR con 5 etapas). Criterio de la consultora: identificación de entregable faltante durante la revisión final del proyecto para garantizar que todas las carpetas estuvieran completas.</div>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span class="prompt-tag" style="background:var(--coral-light);color:var(--coral-dark);">Normativa</span>
+        <div class="prompt-meta">
+          <h4>Manifiesto de cultura digital — 10 artículos</h4>
+          <p>Sección 04 · Políticas y Cultura Digital</p>
+        </div>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-text">"Redacta un reglamento de cultura digital de 10 artículos para VidaNatura Centroamérica que cubra: uso del ERP como fuente única de verdad, seguridad de contraseñas, uso ético de IA, colaboración en la nube, comunicación digital profesional, desconexión digital, protección de datos de clientes, reporte de incidentes, uso responsable de dispositivos y cultura de aprendizaje continuo. Cada artículo debe incluir KPIs medibles."</div>
+        <div class="prompt-result"><strong>Resultado obtenido:</strong> Manifiesto de 10 artículos con redacción formal, etiquetas de obligatoriedad/regulación y KPIs específicos por artículo. Se diseñó como documento interactivo HTML con colores diferenciados por área temática.</div>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span class="prompt-tag" style="background:var(--coral-light);color:var(--coral-dark);">Argumentación</span>
+        <div class="prompt-meta">
+          <h4>Manejo de objeciones del C-Suite con ROI y KPIs</h4>
+          <p>Sección 04 · Objeciones de costo, tiempo y resistencia</p>
+        </div>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-text">"Desarrolla respuestas técnicas para las tres objeciones de la dirección de VidaNatura: (1) costo de licencias vs. YouTube gratuito, (2) tiempo de 3h/semana que paraliza la operación, y (3) resistencia del personal antiguo al cambio. Cada respuesta debe incluir: argumentación técnica, cálculo de ROI con números concretos, KPIs medibles y una respuesta ejecutiva lista para presentar al C-Suite. Usa el marco ADKAR para la objeción de resistencia."</div>
+        <div class="prompt-result"><strong>Resultado obtenido:</strong> Tres respuestas estructuradas con ROI cuantificado (340% al mes 12 para costo; ratio 1:3.6 para tiempo; 6x mayor probabilidad de éxito para resistencia), KPIs específicos por objeción y respuestas ejecutivas listas para presentación. Marco ADKAR aplicado con 5 etapas y cronograma.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FASE 5: ITERACIONES Y CORRECCIONES -->
+<div class="fase">
+  <div class="fase-title">
+    <div class="fase-num" style="background:var(--purple-light);color:var(--purple-dark);">05</div>
+    <h2>Fase 5 — Iteraciones, correcciones y criterio profesional</h2>
+  </div>
+  <div class="prompts">
+
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span class="prompt-tag" style="background:var(--purple-light);color:var(--purple-dark);">Corrección</span>
+        <div class="prompt-meta">
+          <h4>Corrección de contraste en modo oscuro</h4>
+          <p>Iteración · Sección 01 · Mapa de brecha digital</p>
+        </div>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-text">"El texto dentro de las cajas de colores del mapa no se ve — todo aparece negro. Corrígelo para que sea legible tanto en modo claro como oscuro."</div>
+        <div class="prompt-result"><strong>Resultado obtenido:</strong> Segunda versión del diagrama con colores de texto hardcodeados en lugar de variables CSS del tema. Lección: las clases de color del sistema de visualización no garantizan contraste en modo oscuro — se requiere especificar colores explícitos dentro de formas con fondo de color.</div>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span class="prompt-tag" style="background:var(--purple-light);color:var(--purple-dark);">Corrección</span>
+        <div class="prompt-meta">
+          <h4>Actualización de año en el plan</h4>
+          <p>Iteración · Sección 01 · Año del plan de formación</p>
+        </div>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-text">"¿Por qué dice 2025 en el plan de upskilling/reskilling? Estamos en 2026."</div>
+        <div class="prompt-result"><strong>Resultado obtenido:</strong> Corrección del año a 2026 en el diagrama. Criterio profesional de la consultora: verificación de coherencia temporal en todos los entregables — el plan debe reflejar el año real de implementación.</div>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span class="prompt-tag" style="background:var(--purple-light);color:var(--purple-dark);">Criterio profesional</span>
+        <div class="prompt-meta">
+          <h4>Verificación del número de cursos por colaborador</h4>
+          <p>Iteración · Sección 03 · Plan Maestro de Formación</p>
+        </div>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-text">"Creo que deben ser 5 cursos para cada uno. Yo solo veo 3 o 4 en algunos colaboradores."</div>
+        <div class="prompt-result"><strong>Resultado obtenido:</strong> Revisión completa y adición de cursos faltantes hasta completar exactamente 5 por colaborador en los 10 perfiles. Criterio de la consultora: la guía del proyecto especifica entre 3 y 5 cursos — se optó por el máximo para mayor robustez del plan.</div>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span class="prompt-tag" style="background:var(--purple-light);color:var(--purple-dark);">Criterio profesional</span>
+        <div class="prompt-meta">
+          <h4>Identificación de entregable faltante — objeciones</h4>
+          <p>Iteración · Sección 04 · Manejo de objeciones</p>
+        </div>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-text">"Lo que sí veo que falta es la parte de objeciones y situaciones de crisis — objeciones de costo, de tiempo y de resistencia donde el argumento debe ir basado en ROI y en KPIs."</div>
+        <div class="prompt-result"><strong>Resultado obtenido:</strong> Identificación y desarrollo completo de la sección de manejo de objeciones que no había sido incluida. Criterio de la consultora: revisión activa de la guía del proyecto para garantizar que todos los entregables requeridos estén cubiertos — la IA no puede reemplazar la lectura crítica del enunciado.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- REFLEXIÓN CRÍTICA -->
+<div class="reflexion">
+  <h3>Reflexión crítica — El rol de la IA en este proyecto</h3>
+  <p>La Inteligencia Artificial actuó en este proyecto como un asistente estratégico de alta capacidad, no como un autor autónomo. Cada decisión relevante — el sector de la empresa, la selección de perfiles, la distribución de cursos, el enfoque de las objeciones — fue tomada por la consultora. La IA proporcionó la estructura, los datos sintéticos coherentes y las visualizaciones para materializar esas decisiones.</p>
+  <p>Las iteraciones documentadas en la Fase 5 son especialmente reveladoras: la corrección del año, la verificación del número de cursos y la identificación del entregable faltante de objeciones fueron todas iniciadas por el criterio profesional de la consultora — no por la IA. Esto ilustra el principio central del uso responsable de IA en consultoría: <strong>la herramienta amplifica el criterio, no lo reemplaza.</strong></p>
+  <p>El marco DigComp 2.2 fue aplicado con rigor metodológico: los puntajes asignados son coherentes con el perfil demográfico, educativo y funcional de cada colaborador, y los cursos seleccionados responden directamente a las brechas identificadas — no son selecciones genéricas. Esta coherencia fue verificada y garantizada por la consultora en cada etapa del proceso.</p>
+</div>
+
+<footer>
+  VidaNatura Centro América S.A. · Consultoría JLC de Transformación Digital 2026 · Sección 05 — Bitácora de IA<br>
+  Herramienta utilizada: Claude Sonnet 4.6 (Anthropic) · Metodología: Prompting iterativo con criterio profesional
+</footer>
+
+</div>
+
+
+</body></html>
