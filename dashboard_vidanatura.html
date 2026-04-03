@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)file:///Users/Johana/Downloads/dashboard_vidanatura%20(3).html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard | Consultoría VidaNatura 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+  :root {
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --border: #e8e6df;
+    --text-primary: #1a1916;
+    --text-secondary: #6b6960;
+    --text-muted: #9e9b92;
+    --green: #1D9E75;
+    --green-light: #E1F5EE;
+    --green-dark: #085041;
+    --purple: #7F77DD;
+    --purple-light: #EEEDFE;
+    --purple-dark: #3C3489;
+    --amber: #BA7517;
+    --amber-light: #FAEEDA;
+    --amber-dark: #633806;
+    --blue: #185FA5;
+    --blue-light: #E6F1FB;
+    --blue-dark: #0C447C;
+    --coral: #D85A30;
+    --coral-light: #FAECE7;
+    --coral-dark: #993C1D;
+    --teal-light: #E1F5EE;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-primary); min-height: 100vh; }
+
+  /* HERO */
+  .hero { background: var(--text-primary); color: #fff; padding: 48px 40px 40px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 300px; height: 300px; border-radius: 50%; background: var(--green); opacity: 0.08; }
+  .hero::after { content: ''; position: absolute; bottom: -80px; left: 20%; width: 200px; height: 200px; border-radius: 50%; background: var(--purple); opacity: 0.07; }
+  .hero-tag { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+  .hero h1 { font-size: 32px; font-weight: 700; line-height: 1.2; margin-bottom: 8px; }
+  .hero h1 span { color: var(--green); }
+  .hero p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; max-width: 600px; margin-bottom: 24px; }
+  .hero-meta { display: flex; gap: 24px; flex-wrap: wrap; }
+  .hero-meta-item { display: flex; flex-direction: column; gap: 2px; }
+  .hero-meta-label { font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.07em; font-family: 'DM Mono', monospace; }
+  .hero-meta-value { font-size: 13px; color: rgba(255,255,255,0.85); font-weight: 500; }
+
+  /* KPI STRIP */
+  .kpi-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; background: var(--surface); border-bottom: 1px solid var(--border); }
+  .kpi-strip-item { padding: 18px 20px; border-right: 1px solid var(--border); text-align: center; }
+  .kpi-strip-item:last-child { border-right: none; }
+  .kpi-strip-num { font-size: 26px; font-weight: 700; margin-bottom: 2px; }
+  .kpi-strip-label { font-size: 11px; color: var(--text-secondary); line-height: 1.3; }
+
+  /* MAIN LAYOUT */
+  .main { padding: 32px 40px; max-width: 1100px; margin: 0 auto; }
+  .section-heading { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 16px; margin-top: 32px; }
+  .section-heading:first-child { margin-top: 0; }
+
+  /* CARDS GRID */
+  .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 14px; }
+  .cards-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 14px; }
+
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; cursor: pointer; text-decoration: none; color: inherit; display: block; }
+  .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(-2px); }
+  .card-accent { height: 4px; }
+  .card-body { padding: 18px 20px; }
+  .card-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; margin-bottom: 12px; }
+  .card-num { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-muted); margin-bottom: 4px; }
+  .card-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; color: var(--text-primary); }
+  .card-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 12px; }
+  .card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tag { font-size: 10px; padding: 2px 8px; border-radius: 5px; font-weight: 500; }
+  .card-footer { padding: 10px 20px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--bg); }
+  .card-footer-label { font-size: 11px; color: var(--text-secondary); }
+  .card-footer-arrow { font-size: 12px; color: var(--text-muted); }
+
+  /* PROGRESS SECTION */
+  .progress-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px 24px; margin-bottom: 14px; }
+  .progress-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 16px; }
+  .progress-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .progress-row:last-child { margin-bottom: 0; }
+  .progress-label { font-size: 12px; color: var(--text-secondary); width: 200px; flex-shrink: 0; }
+  .progress-bar-wrap { flex: 1; background: var(--border); border-radius: 4px; height: 8px; overflow: hidden; }
+  .progress-bar { height: 100%; border-radius: 4px; }
+  .progress-val { font-size: 11px; font-weight: 600; width: 40px; text-align: right; flex-shrink: 0; }
+
+  /* TEAM GRID */
+  .team-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 14px; }
+  .team-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px; text-align: center; }
+  .team-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin: 0 auto 8px; }
+  .team-name { font-size: 11px; font-weight: 500; color: var(--text-primary); margin-bottom: 2px; line-height: 1.3; }
+  .team-cargo { font-size: 10px; color: var(--text-secondary); margin-bottom: 6px; line-height: 1.3; }
+  .team-brecha { font-size: 9px; font-weight: 600; padding: 2px 6px; border-radius: 5px; }
+
+  /* TIMELINE */
+  .timeline-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 14px; }
+  .timeline-header { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+  .timeline-header h3 { font-size: 14px; font-weight: 600; }
+  .timeline-body { display: grid; grid-template-columns: repeat(6, 1fr); }
+  .t-col { padding: 14px 12px; border-right: 1px solid var(--border); }
+  .t-col:last-child { border-right: none; }
+  .t-mes { font-size: 10px; font-weight: 700; color: var(--green); font-family: 'DM Mono', monospace; margin-bottom: 8px; }
+  .t-item { font-size: 10px; color: var(--text-secondary); padding: 4px 6px; background: var(--bg); border-radius: 4px; margin-bottom: 4px; line-height: 1.3; }
+
+  /* FOOTER */
+  footer { background: var(--text-primary); color: rgba(255,255,255,0.5); text-align: center; padding: 24px 40px; font-size: 11px; font-family: 'DM Mono', monospace; line-height: 1.8; }
+  footer span { color: var(--green); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Transformación Digital · 2026</div>
+  <h1>Consultoría Digital<br><span>VidaNatura Centro América</span></h1>
+  <p>Plan integral de diagnóstico, formación y cultura digital para una empresa de retail de productos naturales con operación en Guatemala, El Salvador, Honduras y Costa Rica.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="hero-meta-label">Consultora</span><span class="hero-meta-value">Consultora JLC</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-label">Marco metodológico</span><span class="hero-meta-value">DigComp 2.2 — Comisión Europea</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-label">Herramienta IA</span><span class="hero-meta-value">Claude Sonnet 4.6 — Anthropic</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-label">Duración del plan</span><span class="hero-meta-value">6 meses · Abril–Octubre 2026</span></div>
+  </div>
+</div>
+
+<!-- KPI STRIP -->
+<div class="kpi-strip">
+  <div class="kpi-strip-item"><div class="kpi-strip-num" style="color:var(--green)">10</div><div class="kpi-strip-label">Colaboradores diagnosticados</div></div>
+  <div class="kpi-strip-item"><div class="kpi-strip-num" style="color:var(--blue)">50</div><div class="kpi-strip-label">Cursos asignados en total</div></div>
+  <div class="kpi-strip-item"><div class="kpi-strip-num" style="color:var(--purple)">5</div><div class="kpi-strip-label">Áreas DigComp 2.2 evaluadas</div></div>
+  <div class="kpi-strip-item"><div class="kpi-strip-num" style="color:var(--amber)">340%</div><div class="kpi-strip-label">ROI proyectado al mes 12</div></div>
+  <div class="kpi-strip-item"><div class="kpi-strip-num" style="color:var(--coral)">10</div><div class="kpi-strip-label">Políticas de cultura digital</div></div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <div class="section-heading">Entregables del proyecto</div>
+  <div class="cards-grid">
+
+    <!-- Sección 01 -->
+    <a class="card" href="file:///Users/Johana/Downloads/politicas_cultura_digital.html">
+      <div class="card-accent" style="background:var(--green)"></div>
+      <div class="card-body">
+        <div class="card-icon" style="background:var(--green-light)">🏢</div>
+        <div class="card-num">Sección 01</div>
+        <div class="card-title">Contexto Empresarial</div>
+        <div class="card-desc">Perfil de VidaNatura Centroamérica S.A., diagnóstico de crisis digital y objetivos estratégicos a 12 meses.</div>
+        <div class="card-tags">
+          <span class="tag" style="background:var(--green-light);color:var(--green-dark)">Retail bienestar</span>
+          <span class="tag" style="background:var(--green-light);color:var(--green-dark)">4 países</span>
+          <span class="tag" style="background:var(--green-light);color:var(--green-dark)">Crisis ERP</span>
+        </div>
+      </div>
+      <div class="card-footer"><span class="card-footer-label">Ver documento</span><span class="card-footer-arrow">→</span></div>
+    </a>
+
+    <!-- Sección 02 -->
+    <a class="card" href="file:///Users/Johana/Downloads/digcomp_perfiles_1_5.html">
+      <div class="card-accent" style="background:var(--blue)"></div>
+      <div class="card-body">
+        <div class="card-icon" style="background:var(--blue-light)">📊</div>
+        <div class="card-num">Sección 02</div>
+        <div class="card-title">Diagnósticos Individuales</div>
+        <div class="card-desc">10 perfiles con evaluación DigComp 2.2, gráficas de radar y análisis de brecha por área de competencia.</div>
+        <div class="card-tags">
+          <span class="tag" style="background:var(--blue-light);color:var(--blue-dark)">DigComp 2.2</span>
+          <span class="tag" style="background:var(--blue-light);color:var(--blue-dark)">Radar charts</span>
+          <span class="tag" style="background:var(--blue-light);color:var(--blue-dark)">10 perfiles</span>
+        </div>
+      </div>
+      <div class="card-footer"><span class="card-footer-label">Ver perfiles 1–5</span><span class="card-footer-arrow">→</span></div>
+    </a>
+
+    <!-- Sección 02b -->
+    <a class="card" href="file:///Users/Johana/Downloads/digcomp_perfiles_6_10.html">
+      <div class="card-accent" style="background:var(--blue)"></div>
+      <div class="card-body">
+        <div class="card-icon" style="background:var(--blue-light)">📈</div>
+        <div class="card-num">Sección 02 · cont.</div>
+        <div class="card-title">Diagnósticos — Perfiles 6 a 10</div>
+        <div class="card-desc">Coordinador e-commerce, contadora, vendedor, especialista en compras y gerente de TI con sus respectivos radares.</div>
+        <div class="card-tags">
+          <span class="tag" style="background:var(--blue-light);color:var(--blue-dark)">DigComp 2.2</span>
+          <span class="tag" style="background:var(--blue-light);color:var(--blue-dark)">Perfiles 6–10</span>
+        </div>
+      </div>
+      <div class="card-footer"><span class="card-footer-label">Ver perfiles 6–10</span><span class="card-footer-arrow">→</span></div>
+    </a>
+
+    <!-- Sección 03 -->
+    <a class="card" href="file:///Users/Johana/Downloads/plan_maestro_formacion.html">
+      <div class="card-accent" style="background:var(--amber)"></div>
+      <div class="card-body">
+        <div class="card-icon" style="background:var(--amber-light)">🎓</div>
+        <div class="card-num">Sección 03</div>
+        <div class="card-title">Plan Maestro de Formación</div>
+        <div class="card-desc">Rutas de aprendizaje individuales con 5 cursos por colaborador en Udemy Business y Coursera. Plan de 6 meses.</div>
+        <div class="card-tags">
+          <span class="tag" style="background:var(--amber-light);color:var(--amber-dark)">50 cursos</span>
+          <span class="tag" style="background:var(--amber-light);color:var(--amber-dark)">Udemy + Coursera</span>
+          <span class="tag" style="background:var(--amber-light);color:var(--amber-dark)">6 meses</span>
+        </div>
+      </div>
+      <div class="card-footer"><span class="card-footer-label">Ver plan completo</span><span class="card-footer-arrow">→</span></div>
+    </a>
+
+    <!-- Negociación -->
+    <a class="card" href="file:///Users/Johana/Downloads/negociacion_proveedores.html">
+      <div class="card-accent" style="background:var(--amber)"></div>
+      <div class="card-body">
+        <div class="card-icon" style="background:var(--amber-light)">🤝</div>
+        <div class="card-num">Sección 03 · Anexo</div>
+        <div class="card-title">Negociación con Proveedores</div>
+        <div class="card-desc">Estrategia de negociación de licencias, condiciones contractuales y KPIs de renovación con Udemy y Coursera.</div>
+        <div class="card-tags">
+          <span class="tag" style="background:var(--amber-light);color:var(--amber-dark)">ROI</span>
+          <span class="tag" style="background:var(--amber-light);color:var(--amber-dark)">KPIs contrato</span>
+          <span class="tag" style="background:var(--amber-light);color:var(--amber-dark)">Negociación</span>
+        </div>
+      </div>
+      <div class="card-footer"><span class="card-footer-label">Ver estrategia</span><span class="card-footer-arrow">→</span></div>
+    </a>
+
+    <!-- Sección 04 -->
+    <a class="card" href="file:///Users/Johana/Downloads/politicas_cultura_digital.html">
+      <div class="card-accent" style="background:var(--coral)"></div>
+      <div class="card-body">
+        <div class="card-icon" style="background:var(--coral-light)">📋</div>
+        <div class="card-num">Sección 04</div>
+        <div class="card-title">Políticas y Cultura Digital</div>
+        <div class="card-desc">Manifiesto de 10 artículos sobre uso del ERP, seguridad, IA ética, desconexión digital y aprendizaje continuo.</div>
+        <div class="card-tags">
+          <span class="tag" style="background:var(--coral-light);color:var(--coral-dark)">10 políticas</span>
+          <span class="tag" style="background:var(--coral-light);color:var(--coral-dark)">KPIs seguimiento</span>
+        </div>
+      </div>
+      <div class="card-footer"><span class="card-footer-label">Ver manifiesto</span><span class="card-footer-arrow">→</span></div>
+    </a>
+
+  </div>
+
+  <div class="cards-grid-2">
+    <!-- Objeciones -->
+    <a class="card" href="file:///Users/Johana/Downloads/bitacora_ia.html">
+      <div class="card-accent" style="background:var(--purple)"></div>
+      <div class="card-body">
+        <div class="card-icon" style="background:var(--purple-light)">💬</div>
+        <div class="card-num">Sección 03 · El Reto</div>
+        <div class="card-title">Respuestas al C-Suite con ROI y KPIs</div>
+        <div class="card-desc">Argumentación técnica para las objeciones de costo (340% ROI), tiempo (ratio 1:3.6) y resistencia al cambio (marco ADKAR). Respuestas listas para presentación ejecutiva.</div>
+        <div class="card-tags">
+          <span class="tag" style="background:var(--purple-light);color:var(--purple-dark)">ROI cuantificado</span>
+          <span class="tag" style="background:var(--purple-light);color:var(--purple-dark)">ADKAR</span>
+          <span class="tag" style="background:var(--purple-light);color:var(--purple-dark)">C-Suite</span>
+        </div>
+      </div>
+      <div class="card-footer"><span class="card-footer-label">Ver argumentación</span><span class="card-footer-arrow">→</span></div>
+    </a>
+
+    <!-- Bitácora -->
+    <a class="card" href="file:///Users/Johana/Downloads/bitacora_ia.html">
+      <div class="card-accent" style="background:var(--purple)"></div>
+      <div class="card-body">
+        <div class="card-icon" style="background:var(--purple-light)">🤖</div>
+        <div class="card-num">Sección 05</div>
+        <div class="card-title">Bitácora de IA</div>
+        <div class="card-desc">Historial de 18 prompts organizados en 5 fases, incluyendo iteraciones, correcciones y reflexión crítica sobre el rol de la IA en el proyecto.</div>
+        <div class="card-tags">
+          <span class="tag" style="background:var(--purple-light);color:var(--purple-dark)">18 prompts</span>
+          <span class="tag" style="background:var(--purple-light);color:var(--purple-dark)">Claude Sonnet 4.6</span>
+          <span class="tag" style="background:var(--purple-light);color:var(--purple-dark)">Criterio profesional</span>
+        </div>
+      </div>
+      <div class="card-footer"><span class="card-footer-label">Ver bitácora</span><span class="card-footer-arrow">→</span></div>
+    </a>
+  </div>
+
+  <!-- EQUIPO -->
+  <div class="section-heading">Los 10 colaboradores diagnosticados</div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar" style="background:#E1F5EE;color:#085041">AM</div>
+      <div class="team-name">Andrea Molina</div>
+      <div class="team-cargo">Gerente Regional de Ventas · GT</div>
+      <span class="team-brecha" style="background:#FAECE7;color:#993C1D">Brecha alta</span>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:#EEEDFE;color:#3C3489">CF</div>
+      <div class="team-name">Carlos Fuentes</div>
+      <div class="team-cargo">Encargado de Tienda · SV</div>
+      <span class="team-brecha" style="background:#FAECE7;color:#993C1D">Brecha alta</span>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:#FAEEDA;color:#633806">MJ</div>
+      <div class="team-name">María José Rivas</div>
+      <div class="team-cargo">Analista Marketing · GT</div>
+      <span class="team-brecha" style="background:#FAEEDA;color:#633806">Brecha media</span>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:#FAECE7;color:#712B13">RP</div>
+      <div class="team-name">Roberto Paz</div>
+      <div class="team-cargo">Jefe de Logística · HN</div>
+      <span class="team-brecha" style="background:#FAECE7;color:#993C1D">Brecha alta</span>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:#E6F1FB;color:#0C447C">LH</div>
+      <div class="team-name">Lucía Hernández</div>
+      <div class="team-cargo">Atención al Cliente · CR</div>
+      <span class="team-brecha" style="background:#FAEEDA;color:#633806">Brecha media</span>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:#E1F5EE;color:#085041">DC</div>
+      <div class="team-name">Diego Castillo</div>
+      <div class="team-cargo">Coord. E-commerce · GT</div>
+      <span class="team-brecha" style="background:#E1F5EE;color:#085041">Brecha baja</span>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:#FAEEDA;color:#633806">PS</div>
+      <div class="team-name">Patricia Solís</div>
+      <div class="team-cargo">Contadora General · HN</div>
+      <span class="team-brecha" style="background:#FAECE7;color:#993C1D">Brecha alta</span>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:#FAECE7;color:#712B13">FL</div>
+      <div class="team-name">Fernando López</div>
+      <div class="team-cargo">Vendedor de Piso · SV</div>
+      <span class="team-brecha" style="background:#FAEEDA;color:#633806">Brecha media</span>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:#EEEDFE;color:#3C3489">VC</div>
+      <div class="team-name">Valeria Cruz</div>
+      <div class="team-cargo">Especialista Compras · CR</div>
+      <span class="team-brecha" style="background:#FAEEDA;color:#633806">Brecha media</span>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:#E6F1FB;color:#0C447C">JM</div>
+      <div class="team-name">Jorge Méndez</div>
+      <div class="team-cargo">Gerente de TI · GT</div>
+      <span class="team-brecha" style="background:#E1F5EE;color:#085041">Brecha baja</span>
+    </div>
+  </div>
+
+  <!-- PROGRESO DE BRECHAS -->
+  <div class="section-heading">Brechas promedio por área DigComp 2.2</div>
+  <div class="progress-card">
+    <h3>Nivel actual vs. nivel requerido — promedio de los 10 colaboradores</h3>
+    <div class="progress-row">
+      <span class="progress-label">Alfabetización informacional</span>
+      <div class="progress-bar-wrap"><div class="progress-bar" style="width:62%;background:var(--green)"></div></div>
+      <span class="progress-val" style="color:var(--green)">3.1/5</span>
+    </div>
+    <div class="progress-row">
+      <span class="progress-label">Comunicación y colaboración</span>
+      <div class="progress-bar-wrap"><div class="progress-bar" style="width:70%;background:var(--blue)"></div></div>
+      <span class="progress-val" style="color:var(--blue)">3.5/5</span>
+    </div>
+    <div class="progress-row">
+      <span class="progress-label">Creación de contenido digital</span>
+      <div class="progress-bar-wrap"><div class="progress-bar" style="width:60%;background:var(--amber)"></div></div>
+      <span class="progress-val" style="color:var(--amber)">3.0/5</span>
+    </div>
+    <div class="progress-row">
+      <span class="progress-label">Seguridad</span>
+      <div class="progress-bar-wrap"><div class="progress-bar" style="width:56%;background:var(--coral)"></div></div>
+      <span class="progress-val" style="color:var(--coral)">2.8/5</span>
+    </div>
+    <div class="progress-row">
+      <span class="progress-label">Resolución de problemas</span>
+      <div class="progress-bar-wrap"><div class="progress-bar" style="width:58%;background:var(--purple)"></div></div>
+      <span class="progress-val" style="color:var(--purple)">2.9/5</span>
+    </div>
+  </div>
+
+  <!-- CRONOGRAMA -->
+  <div class="section-heading">Cronograma de implementación — 6 meses</div>
+  <div class="timeline-card">
+    <div class="timeline-header"><h3>Plan de ejecución · Abril – Octubre 2026</h3></div>
+    <div class="timeline-body">
+      <div class="t-col">
+        <div class="t-mes">Mes 1</div>
+        <div class="t-item">Negociación licencias</div>
+        <div class="t-item">Onboarding plataformas</div>
+        <div class="t-item">Fundamentos digitales</div>
+      </div>
+      <div class="t-col">
+        <div class="t-mes">Mes 2</div>
+        <div class="t-item">Cursos Fase 1</div>
+        <div class="t-item">Activación ERP</div>
+        <div class="t-item">1ra medición KPIs</div>
+      </div>
+      <div class="t-col">
+        <div class="t-mes">Mes 3</div>
+        <div class="t-item">Cursos Fase 2</div>
+        <div class="t-item">Mentoría interna</div>
+        <div class="t-item">Revisión brechas</div>
+      </div>
+      <div class="t-col">
+        <div class="t-mes">Mes 4</div>
+        <div class="t-item">Cursos avanzados</div>
+        <div class="t-item">Seguridad digital</div>
+        <div class="t-item">2da medición KPIs</div>
+      </div>
+      <div class="t-col">
+        <div class="t-mes">Mes 5</div>
+        <div class="t-item">Cursos Fase 3</div>
+        <div class="t-item">Liderazgo digital</div>
+        <div class="t-item">Evaluación DigComp</div>
+      </div>
+      <div class="t-col">
+        <div class="t-mes">Mes 6</div>
+        <div class="t-item">Certificaciones</div>
+        <div class="t-item">Evaluación final</div>
+        <div class="t-item">Informe a junta</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  VidaNatura Centro América S.A. · Consultoría JLC de Transformación Digital 2026<br>
+  Desarrollado con <span>Claude Sonnet 4.6 (Anthropic)</span> · Marco metodológico: <span>DigComp 2.2 — Comisión Europea</span><br>
+  Maestría en Transformación Digital · Competencias y Habilidades Digitales
+</footer>
+
+
+
+</body></html>
